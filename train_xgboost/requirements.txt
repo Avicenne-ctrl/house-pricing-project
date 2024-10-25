@@ -1,0 +1,9 @@
+google-cloud-aiplatform
+google-auth
+xgboost
+scikit-learn
+argparse
+hypertune
+pandas
+numpy
+cloudml-hypertune
