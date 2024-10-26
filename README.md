@@ -5,32 +5,33 @@
 The goal of this repo is to explain how to fine tune hyper parameters for 2 models (xgboost and RandomForest) and then train it on Vertex Ai, in order to deploy these models for real-time prediction.
 Let’s explain the steps of this project thanks to this schema : 
 
+![First](images-readme/first-schema.png)
+
+- We will create a container for the hyperparameter tuning task for each model.
+- Start the CustomJob and save the best hyperparameters to the destination bucket.
+- Then, we will create a new container for the training task for each model, importing the hyperparameters from the previous bucket.
+- Start the CustomJob and save the ```model.bst``` file to the destination bucket.
+- Finally, we create the application container, using the ```model.bst``` file from the bucket to make predictions.
+- Deploy the Flask API app on Cloud Run. Here is the link to the app if you’d like to try it:
+
+
+However I’m facing some issue when I try to start a CustomJob : 
+
+![Issue](images-readme/issue.png)
+
+
+Instead, I focused on training a single model (XGBoost) locally on my computer, then manually uploaded the weights (`model.bst`) and parameters (`config.ini`) to the bucket. We will still keep the containers for hyperparameter tuning and training.
+
+![Issue](images-readme/solution.png)
 ￼
-
-- We will create container for hypertune task for each model ( f« house-pricing-finetune-{model}»)
-- Launch the CustomJob and save the best hyperparams on the destination bucket
-- Then we will create new container for training task for each model ( f « {model}-train »), in which we will import the hyperparams from the bucket
-- Launch the CustomJob and save the model.bst on the destination bucket
-- Finally we can create the container application in which we will use the model.bst model from the bucket in order to make prediction
-- Deploy the API Flask app on Cloud Run, here is the link of the app if you want to try it : 
-
-
-
-However I’m facing some issue when I try to launch a CustomJob : 
-
-￼
-
-Instead, I trained the 2 models locally on my computer and then download the weights (model.bst) and the params (config.ini) manually on the bucket  We will still keep the hypertune and train containers.
-
-￼
-
 How to use this repo : 
 
-Git clone
+```Git clone https://github.com/Avicenne-ctrl/house-pricing-project.git```
 
-Install GKP
-Install VKP
+However, you won’t be able to use the app directly, as it requires Admin authorization. To get started, create your own Google Cloud account and project, then follow the steps provided in each Notebook subfolder.
 
-However you can’t use the app as it is because you need Admin authorization. Create your own Google Cloud account and project, then follow the step on each ReadMe.
 
-Then you can refer to the ReadMe of each sub folder to understand how to create hypertuning, training CustomJob
+
+
+
+
