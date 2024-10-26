@@ -1,34 +1,29 @@
-# house-pricing-application
+# House Pricing API
 
-house-pricing-application :
+In this folder, I developed a script in order to get the xgboost model stored in a Google Cloud bucket and use it in a Flask API deployed with Google Run.
 
-Access the app thanks to this url : 
+Here is a detailed explaination for each file :   
 
-script : 
-    utilities = prediction
+```script/utilities```  
+- Py function to load the Xgboost model stored in the Google Cloud bucket
+- Py function to predict the pricing given an user query
 
+```script/update_model```  
+- Py function to train xgboost model locally
+- Py function to save the bst model in the bucket
+- Py function to load the tensorflow dataset
+  
+```script/xgboost_model.bst```  
+- bst file
 
-    update_model = - get hyperparams from aiplatform.HyperparameterTuningJob stored in bucket
-                    - if better score
-                    - get the new params
-                    - update xgboost/ randomforest
+```templates/```  
+- index and results html web pages
 
-deploy the prediction app
+```app.py```
+- the API Flask 
 
-static : 
- - save model/ load the weights from buckets instead
- - save csv/ BigQuery ? / already created a dataset 
-
-template :
-html display
-
-app.py = API flask to predict a pricing
-
-Dockerfile for the container
-Push it to Google artefact registry
-Publish app = Google Cloud Run
-
-Update model = Google Function Run
+```how_to_deploy_app```
+- notebook with instruction to deploy the app container on Cloud Run
 
 
 
