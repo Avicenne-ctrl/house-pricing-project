@@ -23,8 +23,6 @@ Model deploying steps :
 
 Here is an example of the Flask API :  
 
-![API](images-readme/api-html.png)
-
 Workflow from a Git repository using Cloud Build :  
 - connect the git repo to Cloud Build
 - Add an YAML filewith instructions to reload training container and new model.bst on the bucket
