@@ -5,6 +5,8 @@ import pandas as pd
 from xgboost import XGBRegressor
 from sklearn.ensemble import RandomForestRegressor
 import numpy
+from google.cloud import aiplatform
+from google.cloud.aiplatform import hyperparameter_tuning as hpt
 import sys
 sys.path.append("..")
 import script.utilities as ut
@@ -27,6 +29,16 @@ N_ESTIMATORS_RFR  = 100
 MAX_DEPTH_RFR     = 6
 MIN_SAMPLES_SPLIT = 3
 MIN_SAMPLES_LEAF  = 10
+
+
+def get_and_save_hyerparams():
+    
+    aiplatform.init(project=PROJECT, location=LOCATION)
+    hpt_job = aiplatform.HyperparameterTuningJob.get(
+        resource_name=JOB_NAME,
+    )
+    
+    return hpt_job
 
 
 def create_xgboost(n_estimators: int    = N_ESTIMATORS_XGB, 

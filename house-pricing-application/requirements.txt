@@ -1,5 +1,8 @@
-flask
-pandas
+joblib
 numpy
-scikit-learn
+tensorflow
+pandas
 xgboost
+flask
+scikit-learn
+google-cloud-aiplatform

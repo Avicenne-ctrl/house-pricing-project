@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Résultats</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Assure que le contenu prend toute la hauteur de la page */
+        }
+        .container-header {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e7e7e7;
+            width: 100%; /* Prend toute la largeur de la page */
+        }
+        .container {
+            width: 80%;
+            margin-top: 20px; /* Ajoutez une marge supérieure pour abaisser le tableau */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container-header">
+            <h1>HOUSE PRICING PREDICTION</h1>
+        </div>
+    </header>
+
+    <!-- Section pour afficher la valeur entière venant de Flask -->
+    <div class="result">
+        Prediction: {{ prediction_value }}
+    </div>
+</body>
+</html>
+
