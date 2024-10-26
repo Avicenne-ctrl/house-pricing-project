@@ -60,35 +60,4 @@ def load_xgb_model_locally():
     
     loaded_xgb.load_model('static/xgboost_model.bst')
     
-    return loaded_xgb
-
-""" not ready
-def load_rfr_model():
-    
-    loaded_rfr = RandomForestRegressor()
-
-    loaded_rfr.load_model('static/rfr_model.json')  # Load from JSON
-    
-    return loaded_rfr"""
-    
-
-def make_prediction(data: pd.DataFrame, model)-> float:
-    """
-        Make prediction with custom pretrained model
-
-        Args:
-            data (pd.DataFrame): 
-                the array of value we need to predict the label
-                
-            model (RandomForestRegressor | XGBRegressor): 
-                the pretrained model 
-
-        Returns:
-            result (int): 
-                the predicted value
-
-        
-    """
-    result = model.predict(data)
-    
-    return result
+    return
