@@ -17,10 +17,13 @@ Model deploying steps :
 - Then, we will create a new container for the training task for each model, importing the hyperparameters from the previous bucket.
 - Start the CustomJob and save the ```model.bst``` file to the destination bucket.
 - We create the application container, using the ```model.bst``` file from the bucket to make predictions.
-- Deploy the Flask API app on Cloud Run. Here is the link to the app if you’d like to try it:
+- Deploy the Flask API app on Cloud Run. Here is the link to the app if you’d like to try it: https://api-house-pricing-703919146685.europe-west9.run.app
 
 ![First](images-readme/first-schema.png)
 
+Here is an example of the Flask API :  
+
+![API](images-readme/api-html.png)
 
 Workflow from a Git repository using Cloud Build :  
 - connect the git repo to Cloud Build
