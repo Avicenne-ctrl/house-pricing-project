@@ -22,6 +22,7 @@ Model deploying steps :
 ![First](images-readme/first-schema.png)
 
 Here is an example of the Flask API :  
+![API](images-readme/api-html.png)
 
 Workflow from a Git repository using Cloud Build :  
 - connect the git repo to Cloud Build
