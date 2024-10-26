@@ -1,7 +1,0 @@
-joblib
-numpy==1.24.2
-tensorflow==2.12.0  # Assurez-vous d'utiliser une version compatible avec Python 3.12
-google-cloud-aiplatform
-scikit-learn==1.2.0  # Mettez à jour selon votre besoin
-xgboost==1.6.0  # Utilisez la version qui vous convient
-flask==2.2.2

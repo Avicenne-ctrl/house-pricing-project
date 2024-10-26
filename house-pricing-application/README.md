@@ -4,17 +4,6 @@ house-pricing-application :
 
 Access the app thanks to this url : 
 
-
-Use this repo :
-
-clone git
-
-install requirements.txt
-
-python app.py
-
-
-
 script : 
     utilities = prediction
 
