@@ -1,0 +1,59 @@
+# Variables globales
+variables:
+  worker_pool_specs: 
+    - machine_spec: 
+        machine_type: "n1-standard-4"
+      replica_count: 1
+      container_spec: 
+        image_uri: "${_IMAGE_URI}"
+  PROJECT: "trans-sunset-439207-f2"
+  JOB_TRAIN_NAME: "xgboost-train"
+  IMAGE_URI: "gcr.io/${_PROJECT}/${_JOB_TRAIN_NAME}"
+  FOLDER_TRAIN: "train_xgboost"
+  BUCKET_URI: "gs://${_PROJECT}-boston-house-pricing"
+  
+
+# Création d'un CustomJob
+steps:
+  # Build et push de l'image Docker
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', '${_IMAGE_URI}:latest', './${_FOLDER_TRAIN}']
+  
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_IMAGE_URI}:latest']
+
+  # Lancement de l'entraînement sur Vertex AI
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: [
+      'ai', 'custom-jobs', 'create',
+      '--display-name=${_JOB_TRAIN_NAME}',
+      '--project=${_PROJECT}',
+      '--region=us-central1',
+      '--worker-pool-spec', "${_worker_pool_specs}",
+      '--staging-bucket=${_BUCKET_URI}',
+    ]
+
+  # Création d'un endpoint Vertex AI
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: [
+      'ai', 'endpoints', 'create',
+      '--project=${_PROJECT}',
+      '--region=us-central1',
+      '--display-name=${_JOB_TRAIN_NAME}-endpoint'
+    ]
+
+  # Déploiement du modèle sur Vertex AI
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: [
+      'ai', 'models', 'upload',
+      '--region=us-central1',
+      '--project=${_PROJECT}',
+      '--display-name=my-model',
+      '--container-image-uri=${_IMAGE_URI}:latest',
+      '--artifact-uri= ${_BUCKET_URI}/xgboost-model'
+    ]
+
+timeout: "3600s"
