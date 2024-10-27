@@ -26,8 +26,13 @@ Here is an example of the Flask API :
 
 Workflow from a Git repository using Cloud Build :  
 - connect the git repo to Cloud Build
+![repo](images-readme/repo.png)
+ 
 - Add an YAML filewith instructions to reload training container and new model.bst on the bucket
 - Create a build trigger
+
+![connect](images-readme/connect.png)
+
 
 
 Here is some issue I faced during this project :  
